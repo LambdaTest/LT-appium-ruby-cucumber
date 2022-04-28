@@ -12,7 +12,7 @@ browser_caps:
     "platformName": "Android"
     "platformVersion": "9"
     "deviceName": "Galaxy S8 Plus"
-    "app": "lt://APP100202491650560064909128"
+    "app": "lt://"
     "name": "first_test"
     "isRealMobile": "true"
 
