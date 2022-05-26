@@ -1,4 +1,4 @@
-server: "beta-hub.lambdatest.com"
+server: "mobile-hub.lambdatest.com"
 
 common_caps:
   "user": "username"
