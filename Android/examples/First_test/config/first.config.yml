@@ -15,8 +15,8 @@ browser_caps:
     "app": "lt://"
     "name": "first_test"
     "isRealMobile": "true"
-    "geoLocation":"fr"
-
+    #GRANT PERMISSIONS FOR ANDROID
+    "autoGrantPermissions": True,
 
 
 
