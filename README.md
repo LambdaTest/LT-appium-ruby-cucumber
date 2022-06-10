@@ -34,10 +34,23 @@ browser_caps:
     "otherApps":["lt:// ", "lt:// "]   #ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
 ```
 
-## Run your test
+## Executing The Tests
+
+<Tabs className="docs__val">
+
+<TabItem value="ios" label="iOS" default>
+
+If you are using an **iOS** app, the cURL command will generate an app URL for the corresponding iOS app and install the same for running the tests. You can either use our sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa) or upload your own app as discussed earlier.
+
+Navigate to the corresponding directory based on your app.
 
 ```bash
-python3 android.py
+cd ios
+```
+Execute the following command to run your test on LambdaTest platform:
+
+```bash
+bundle exec rake first
 ```
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
