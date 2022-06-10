@@ -1,241 +1,43 @@
-# Cucumber With Appium
+# How to change IP geographic location in Ruby Cucumber with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-geoLocation)
 
-<p align="center">
-<img height="500" src="https://user-images.githubusercontent.com/95698164/171858095-57a02573-3b2e-4dfb-92ee-5c62f1aade4d.png">
-</p>
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-ruby-cucumber)
 
-<p align="center">
-  <a href="https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Blog</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Docs</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Learning Hub</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/newsletter/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Newsletter</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/certifications/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Certifications</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.youtube.com/c/LambdaTest" target="_bank">YouTube</a>
-</p>
-&emsp;
-&emsp;
-&emsp;
+# Steps:
 
-*Cucumber is a free and open source behavior-driven development (BDD) tool that supports the development process. Its ordinary language parser, Gherkin, allows software behavior to be specified in a logical language that anyone can understand. Perform Appium automation tests on [LambdaTest's online cloud](https://www.lambdatest.com/appium-mobile-testing).*
+The following is an example on how to set geoLocation in the capabilities in your automation script.
 
-*Learn the basics of [Appium testing on the LambdaTest platform.](https://www.lambdatest.com/support/docs/getting-started-with-appium-testing/)*
+Appending the code in ```first.config.yml```:
 
-[<img height="53" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
-
-## Table of Contents
-
-* [Pre-requisites](#pre-requisites)
-* [Run Your First Test](#run-your-first-test)
-* [Executing The Tests](#executing-the-tests)
-
-## Pre-requisites
-
-Before you can start performing Ruby automation testing with Selenium, you would need to:
-
-- Install **Ruby** and **gem** on your local system. Follow these instructions to install on different operating systems.
-
-  - For **Windows**, you can download from the [official website](https://rubyinstaller.org/downloads/).
-  - For **Linux** or **Ubuntu**, you can run a simple apt command like below:
-
-    ```bash
-    sudo apt-get install ruby-full
-    ```
-
-  - For **macOS**, you can run a [Homebrew](https://brew.sh/) command like this:
-
-    ```bash
-    brew install ruby
-    ```
-
-- Ensure you have Dependency manager **bundler** installed. If not installed, you can install with the following command -
-
-  ```
-  gem install bundler
-  ```
-
-### Clone The Sample Project
-
-Clone the LambdaTest’s [LT_Ruby_Appium](https://github.com/LambdaTest/LT-appium-ruby-cucumber) and navigate to the code directory as shown below:
-
-```bash
-git clone https://github.com/LambdaTest/LT-appium-ruby-cucumber
-cd LT-appium-ruby-cucumber
-```
-
-### Setting Up Your Authentication
-
-Make sure you have your LambdaTest credentials with you to run test automation scripts on LambdaTest. To obtain your access credentials, [purchase a plan](https://billing.lambdatest.com/billing/plans) or access the [Automation Dashboard](https://appautomation.lambdatest.com/).
-
-Set LambdaTest `Username` and `Access Key` in environment variables.
-
-**For Linux/macOS:**
-
-```js
-export LT_USERNAME="YOUR_LAMBDATEST_USERNAME" \
-export LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
-```
-  
-**For Windows:**
-
-```js
-set LT_USERNAME="YOUR_LAMBDATEST_USERNAME" `
-set LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
-```
-  
-### Upload Your Application
-
-Upload your **_iOS_** application (.ipa file) or **_android_** application (.apk file) to the LambdaTest servers using our **REST API**. You need to provide your **Username** and **AccessKey** in the format `Username:AccessKey` in the **cURL** command for authentication. Make sure to add the path of the **appFile** in the cURL request. Here is an example cURL request to upload your app using our REST API:
-
-**Using App File:**
-
-**For Linux/macOS:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
---location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
---form 'name="Android_App"' \
---form 'appFile=@"/Users/macuser/Downloads/proverbial_android.apk"' 
-```
-
-**For Windows;**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -F "appFile=@"/Users/macuser/Downloads/proverbial_android.apk""
-```
-
-**Using App URL:**
-
-**For Linux/macOS:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
---location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
---form 'name="Android_App"' \
---form 'url="https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk"'
-```
-
-**For Windows:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -d "{"url":"https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk","name":"sample.apk"}"
-```
-
-**Tip:**
-
-- If you do not have any **.apk** or **.ipa** file, you can run your sample tests on LambdaTest by using our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
-- Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
-
-## Run Your First Test
-
-**Test Scenario:** Check out [Android.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/Android/examples/First_test/features/step_definitions/first_steps.rb) file to view the sample test script for android and [iOS.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/iOS/examples/First_test/features/step_definitions/first_steps.rb) for iOS.
-
-### Configuring Your Test Capabilities
-
-You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
-
-<Tabs className="docs__val">
-
-<TabItem value="ios-config" label="iOS" default>
-
-```ruby title="iOS(.ipa)"
-server: "beta-hub.lambdatest.com"
+```ruby
+server: "mobile-hub.lambdatest.com"
 
 common_caps:
-  "user": "LAMBDATEST_USERNAME"
-  "accessKey": "LAMBDATEST_ACCESS_KEY"
+  "user": "username"
+  "accessKey": "accesskey"
   "project": "First Cucumber Android Project"
   "build": "build-1"
-
+  
 
 browser_caps:
   -
     "platformName": "iOS"
     "platformVersion": "12.0"
     "deviceName": "iPhone 8"
-    "app": "YOUR_APP_URL"
+    "app": "lt://"
     "name": "first_test"
     "isRealMobile": "true"
+    
+    #ADD GEOLOCATION BASED ON COUNTRY CODE
+    "geoLocation":"fr"
 ```
 
-</TabItem>
-<TabItem value="android-config" label="Android" default>
-
-```ruby title="Android(.apk)"
-server: "beta-hub.lambdatest.com"
-
-common_caps:
-  "user": "LAMBDATEST_USERNAME"
-  "accessKey": "LAMBDATEST_ACCESS_KEY"
-  "project": "First Cucumber Android Project"
-  "build": "build-1"
-
-
-browser_caps:
-  -
-    "platformName": "Android"
-    "platformVersion": "9"
-    "deviceName": "Galaxy S8 Plus"
-    "app": "YOUR_APP_URL"
-    "name": "first_test"
-    "isRealMobile": "true"
-```
-
-</TabItem>
-
-</Tabs>
-
-**Info Note:**
-
-- You must add the generated **APP_URL** to the `"app"` capability in the config file.
-- You can generate capabilities for your test requirements with the help of our inbuilt **[Capabilities Generator tool](https://www.lambdatest.com/capabilities-generator/beta/index.html)**. A more Detailed Capability Guide is available [here](https://www.lambdatest.com/support/docs/desired-capabilities-in-appium/).
-
-## Executing The Tests
-
-<Tabs className="docs__val">
-
-<TabItem value="ios" label="iOS" default>
-
-If you are using an **iOS** app, the cURL command will generate an app URL for the corresponding iOS app and install the same for running the tests. You can either use our sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa) or upload your own app as discussed earlier.
-
-Navigate to the corresponding directory based on your app.
-
-```bash
-cd ios
-```
-Execute the following command to run your test on LambdaTest platform:
+## Run your test
 
 ```bash
 bundle exec rake first
 ```
 
-</TabItem>
-
-<TabItem value="android" label="Android" default>
-
-If you are using an **android** app, the cURL command will generate an app URL for the corresponding Android app and install the same for running the tests. You can either use our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or upload your own app as discussed earlier.
-
-Navigate to the corresponding directory based on your app.
-
-```bash
-cd android
-```
-
-Execute the following command to run your test on LambdaTest platform:
-
-```bash
-bundle exec rake first
-```
-
-</TabItem>
-
-</Tabs>
-
-**Info:** Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the :link: [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
+Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
 
 ## Additional Links
 
@@ -247,9 +49,10 @@ bundle exec rake first
       
 Visit the following links to learn more about LambdaTest's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
 
-* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)
-* [LambdaTest Blog](https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)
-* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)    
+* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
+* [LambdaTest Blog](https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
+* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-python)
+* [LambdaTest Community](http://community.lambdatest.com/)    
 
 ## LambdaTest Community :busts_in_silhouette:
 
@@ -283,4 +86,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-geoLocation)
