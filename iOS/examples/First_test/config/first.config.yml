@@ -15,5 +15,10 @@ browser_caps:
     "app": "lt://"
     "name": "first_test"
     "isRealMobile": "true"
-    "geoLocation":"fr"
+    
+    #ACCEPT ALERTS FOR IOS
+    "autoDismissAlerts": "true",
+
+    #DISMISS ALERTS FOR IOS
+    "autoAcceptAlerts": "true"
 
