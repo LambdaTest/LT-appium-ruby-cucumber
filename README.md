@@ -1,10 +1,10 @@
-# How to change IP geographic location in Ruby Cucumber with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-geoLocation)
+# How to to handle permission pop-ups in Ruby Cucumber with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-permissions)
 
-While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-ruby-cucumber)
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to automatically handle permission pop-ups. You may choose to either accept all permission pop-ups or dismiss all of them. You can handle the case as mentioned below separately for Android or iOS apps. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-python-behave)
 
 # Steps:
 
-The following is an example on how to set geoLocation in the capabilities in your automation script.
+The following is an example on how to handle permissions in the capabilities in your automation script.
 
 Appending the code in ```first.config.yml```:
 
@@ -27,8 +27,14 @@ browser_caps:
     "name": "first_test"
     "isRealMobile": "true"
     
-    #ADD GEOLOCATION BASED ON COUNTRY CODE
-    "geoLocation":"fr"
+    #GRANT PERMISSIONS FOR ANDROID
+    "autoGrantPermissions": True,
+
+    #ACCEPT ALERTS FOR IOS
+    "autoDismissAlerts": True,
+
+    #DISMISS ALERTS FOR IOS
+    "autoAcceptAlerts": True
 ```
 
 ## Run your test
@@ -86,4 +92,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-geoLocation)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-ruby-cucumber-permissions)
