@@ -16,7 +16,7 @@ browser_caps:
     "name": "first_test"
     "isRealMobile": "true"
     #GRANT PERMISSIONS FOR ANDROID
-    "autoGrantPermissions": True,
+    "autoGrantPermissions": "true"
 
 
 
