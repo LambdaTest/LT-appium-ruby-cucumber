@@ -28,13 +28,13 @@ browser_caps:
     "isRealMobile": "true"
     
     #GRANT PERMISSIONS FOR ANDROID
-    "autoGrantPermissions": True,
+    "autoGrantPermissions": "true"
 
     #ACCEPT ALERTS FOR IOS
-    "autoDismissAlerts": True,
+    "autoDismissAlerts": "true"
 
     #DISMISS ALERTS FOR IOS
-    "autoAcceptAlerts": True
+    "autoAcceptAlerts": "true"
 ```
 
 ## Run your test
