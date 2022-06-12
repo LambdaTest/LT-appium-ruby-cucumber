@@ -81,7 +81,7 @@ curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
 
 ## Run Your First Test
 
-Once you are done with the above-mentioned steps, you can initiate your first Python test on LambdaTest.
+Once you are done with the above-mentioned steps, you can initiate your first Ruby test on LambdaTest.
 
 ### Configuring Your Test Capabilities
 
