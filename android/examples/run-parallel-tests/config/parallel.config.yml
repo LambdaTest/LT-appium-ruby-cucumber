@@ -1,0 +1,23 @@
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
+
+
+common_caps:
+
+  "build": "br-1"
+  
+
+browser_caps:
+  -
+    "isRealMobile": "true"
+    "platform": "android"
+    "deviceName": "Galaxy S21 5G"
+    "platformVersion": "11"
+    "app": "APP_URL"      # Add your app url here
+  -
+    "isRealMobile": "true"
+    "platform": "android"
+    "deviceName": "Galaxy A31"
+    "platformVersion": "10"
+    "app": "APP_URL"      # Add your app url here

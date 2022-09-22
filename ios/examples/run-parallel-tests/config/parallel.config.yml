@@ -1,0 +1,23 @@
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
+
+
+common_caps:
+
+  "build": "br-1"
+  
+
+browser_caps:
+  -
+    "isRealMobile": "true"
+    "platform": "ios"
+    "deviceName": "iPhone 11"
+    "platformVersion": "14"
+    "app": "APP_URL"      # Add your app url here
+  -
+    "isRealMobile": "true"
+    "platform": "ios"
+    "deviceName": "iPhone 11"
+    "platformVersion": "14"
+    "app": "APP_URL"      # Add your app url here

@@ -76,15 +76,15 @@ Set LambdaTest `Username` and `Access Key` in environment variables.
 **For Linux/macOS:**
 
 ```js
-export LT_USERNAME="YOUR_LAMBDATEST_USERNAME" \
-export LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
+export LT_USERNAME=YOUR_LAMBDATEST_USERNAME \
+export LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
 ```
   
 **For Windows:**
 
 ```js
-set LT_USERNAME="YOUR_LAMBDATEST_USERNAME" `
-set LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
+set LT_USERNAME=YOUR_LAMBDATEST_USERNAME `
+set LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
 ```
   
 ### Upload Your Application
@@ -132,7 +132,7 @@ curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://m
 
 ## Run Your First Test
 
-**Test Scenario:** Check out [Android.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/Android/examples/First_test/features/step_definitions/first_steps.rb) file to view the sample test script for android and [iOS.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/iOS/examples/First_test/features/step_definitions/first_steps.rb) for iOS.
+**Test Scenario:** Check out [first_steps.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/Android/examples/First_test/features/step_definitions/first_steps.rb) file to view the sample test script in android/ios folder and [first.config.yml](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/iOS/examples/First_test/features/step_definitions/first_steps.rb) to make changes to the username, accessKey and app url.
 
 ### Configuring Your Test Capabilities
 
@@ -140,49 +140,48 @@ You can update your custom capabilities in test scripts. In this sample project,
 
 <Tabs className="docs__val">
 
-<TabItem value="ios-config" label="iOS" default>
+<TabItem value="android-config" label="Android" default>
 
-```ruby title="iOS(.ipa)"
-server: "beta-hub.lambdatest.com"
+```ruby title="Android first.config.yml)"
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
+
 
 common_caps:
-  "user": "LAMBDATEST_USERNAME"
-  "accessKey": "LAMBDATEST_ACCESS_KEY"
-  "project": "First Cucumber Android Project"
-  "build": "build-1"
 
+  "build": "br-1"
+  
 
 browser_caps:
   -
-    "platformName": "iOS"
-    "platformVersion": "12.0"
-    "deviceName": "iPhone 8"
-    "app": "YOUR_APP_URL"
-    "name": "first_test"
     "isRealMobile": "true"
+    "platform": "android"
+    "deviceName": "Galaxy S21 5G"
+    "platformVersion": "11"
+    "app": "APP_URL"      # Add your app url here
 ```
 
 </TabItem>
-<TabItem value="android-config" label="Android" default>
+<TabItem value="ios-config" label="iOS" default>
 
-```ruby title="Android(.apk)"
-server: "beta-hub.lambdatest.com"
+```ruby title="iOS first.config.yml"
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
 
 common_caps:
-  "user": "LAMBDATEST_USERNAME"
-  "accessKey": "LAMBDATEST_ACCESS_KEY"
-  "project": "First Cucumber Android Project"
-  "build": "build-1"
 
+  "build": "br-2"
+  
 
 browser_caps:
   -
-    "platformName": "Android"
-    "platformVersion": "9"
-    "deviceName": "Galaxy S8 Plus"
-    "app": "YOUR_APP_URL"
-    "name": "first_test"
     "isRealMobile": "true"
+    "platform": "ios"
+    "deviceName": "iPad (2017)"
+    "platformVersion": "13"
+    "app": "APP_URL"      # Add your app url here
 ```
 
 </TabItem>
@@ -196,44 +195,25 @@ browser_caps:
 
 ## Executing The Tests
 
-<Tabs className="docs__val">
+- Switch to `run_first_test` directory under [Android examples](android/examples) or [iOS examples](ios/examples)
 
-<TabItem value="ios" label="iOS" default>
+- Go to `config/first.config.yml` and edit the username, acessKey and add your app url.
 
-If you are using an **iOS** app, the cURL command will generate an app URL for the corresponding iOS app and install the same for running the tests. You can either use our sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa) or upload your own app as discussed earlier.
-
-Navigate to the corresponding directory based on your app.
+- Run the following commands to run your tests
 
 ```bash
-cd ios
-```
-Execute the following command to run your test on LambdaTest platform:
-
-```bash
+bundle install
 bundle exec rake first
 ```
 
-</TabItem>
+### **Speed up test execution with parallel testing :**
 
-<TabItem value="android" label="Android" default>
+- Switch to `run_parallel_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
 
-If you are using an **android** app, the cURL command will generate an app URL for the corresponding Android app and install the same for running the tests. You can either use our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or upload your own app as discussed earlier.
 
-Navigate to the corresponding directory based on your app.
+### **Use Local testing for apps that access resources hosted in development or testing environments :**
 
-```bash
-cd android
-```
-
-Execute the following command to run your test on LambdaTest platform:
-
-```bash
-bundle exec rake first
-```
-
-</TabItem>
-
-</Tabs>
+- Switch to `run_local_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
 
 **Info:** Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the :link: [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
 
