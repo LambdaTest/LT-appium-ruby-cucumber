@@ -14,4 +14,4 @@ browser_caps:
     "platform": "android"
     "deviceName": "Galaxy S21 5G"
     "platformVersion": "11"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-android"      # Add your app url here
