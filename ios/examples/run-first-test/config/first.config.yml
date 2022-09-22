@@ -10,7 +10,7 @@ common_caps:
 browser_caps:
   -
     "isRealMobile": "true"
-    "platform": "ios"
-    "deviceName": "iPad (2017)"
-    "platformVersion": "13"
+    "platform": "iOS"
+    "deviceName": "iPhone 11"
+    "platformVersion": "14"
     "app": "lt://proverbial-ios"      # Add your app url here
