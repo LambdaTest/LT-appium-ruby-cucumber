@@ -12,12 +12,12 @@ browser_caps:
   -
     "isRealMobile": "true"
     "platform": "ios"
-    "deviceName": "iPad (2017)"
-    "platformVersion": "13"
+    "deviceName": "iPhone 11"
+    "platformVersion": "14"
     "app": "APP_URL"      # Add your app url here
   -
     "isRealMobile": "true"
     "platform": "ios"
-    "deviceName": "iPad (2017)"
-    "platformVersion": "13"
+    "deviceName": "iPhone 11"
+    "platformVersion": "14"
     "app": "APP_URL"      # Add your app url here
