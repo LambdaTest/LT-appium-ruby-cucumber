@@ -13,4 +13,4 @@ browser_caps:
     "platform": "ios"
     "deviceName": "iPad (2017)"
     "platformVersion": "13"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-ios"      # Add your app url here
