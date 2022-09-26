@@ -14,10 +14,10 @@ browser_caps:
     "platform": "ios"
     "deviceName": "iPhone 11"
     "platformVersion": "14"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-ios"      # Add your app url here
   -
     "isRealMobile": "true"
     "platform": "ios"
     "deviceName": "iPhone 11"
     "platformVersion": "14"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-ios"      # Add your app url here
