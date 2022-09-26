@@ -14,10 +14,10 @@ browser_caps:
     "platform": "android"
     "deviceName": "Galaxy S21 5G"
     "platformVersion": "11"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-android"      # Add your app url here
   -
     "isRealMobile": "true"
     "platform": "android"
     "deviceName": "Galaxy A31"
     "platformVersion": "10"
-    "app": "APP_URL"      # Add your app url here
+    "app": "lt://proverbial-android"      # Add your app url here
