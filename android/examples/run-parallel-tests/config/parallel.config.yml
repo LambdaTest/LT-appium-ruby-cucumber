@@ -11,13 +11,14 @@ common_caps:
 browser_caps:
   -
     "isRealMobile": "true"
-    "platform": "android"
+    "platformName": "android"
     "deviceName": "Galaxy S21 5G"
     "platformVersion": "11"
+    "automationName": "UiAutomation2"
     "app": "lt://proverbial-android"      # Add your app url here
   -
     "isRealMobile": "true"
-    "platform": "android"
+    "platformName": "android"
     "deviceName": "Galaxy A31"
     "platformVersion": "10"
     "app": "lt://proverbial-android"      # Add your app url here
