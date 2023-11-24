@@ -13,7 +13,7 @@ browser_caps:
     "isRealMobile": "true"
     "platformName": "android"
     "deviceName": "Galaxy S21 5G"
-    "platformVersion": "11"
+    "platformVersion": "12"
     "app": "lt://proverbial-android"      # Add your app url here
   -
     "isRealMobile": "true"
