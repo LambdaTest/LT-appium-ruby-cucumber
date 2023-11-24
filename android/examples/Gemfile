@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'cucumber'
 gem 'selenium-cucumber'
-gem 'selenium-webdriver', '~> 3.142', '>= 3.142.5'
+gem 'selenium-webdriver'
 gem 'rspec'
 gem 'rake'
 gem 'parallel_tests'

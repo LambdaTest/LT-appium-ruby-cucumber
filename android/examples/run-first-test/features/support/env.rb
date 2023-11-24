@@ -1,7 +1,6 @@
 require 'yaml'
 require 'rspec'
 require 'selenium-cucumber'
-
 require 'appium_lib'
 
 TASK_ID = (ENV['TASK_ID'] || 0).to_i
@@ -11,66 +10,42 @@ CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "../../config/#{C
 
 @caps = CONFIG['common_caps'].merge(CONFIG['browser_caps'][TASK_ID])
 
+platform_name = ENV['PLATFORM_NAME'] ? ENV['PLATFORM_NAME'] : @caps["platformName"].inspect.gsub("\"", "")
+is_real_mobile = ENV['IS_REAL_MOBILE'] ? ENV['IS_REAL_MOBILE'] : @caps["isRealMobile"].inspect.gsub("\"", "")
+device_name = ENV['DEVICE_NAME'] ? ENV['DEVICE_NAME'] : @caps["deviceName"].inspect.gsub("\"", "")
+platform_version = ENV['PLATFORM_VERSION'] ? ENV['PLATFORM_VERSION'] : @caps["platformVersion"].inspect.gsub("\"", "")
+app = ENV['APP'] ? ENV['APP'] : @caps["app"].inspect.gsub("\"", "")
 
-#$bs_local = nil
-
-
-puts @caps.inspect
-
-us= @caps["user"].inspect
-ak= @caps["key"].inspect
-is= @caps["isRealMobile"].inspect
-pl= @caps["platform"].inspect
-dn= @caps["deviceName"].inspect 
-pv= @caps["platformVersion"].inspect
-ap= @caps["app"].inspect
-
-
-
-user= us.gsub("\"", "")
-accessKey=ak.gsub("\"", "")
-isRealMobile= is.gsub("\"", "")
-platform= pl.gsub("\"", "")
-deviceName= dn.gsub("\"", "")
-platformVersion= pv.gsub("\"", "")
-app= ap.gsub("\"", "")
-puts isRealMobile 
-
-
-caps={ 
-  
-  "LT:Options" => {
-
-    "build" => "Cucumber Android Single",
-    "name" => "Cucumber Sample Test",
-    "platformName" => platform,
-    "isRealMobile" => isRealMobile,
-    "deviceName" => deviceName,
-    "platformVersion" => platformVersion,
-    "app" => app,
-    "w3c" => true
-
-},
-
- 
+caps = {
+  "LT:Options": {
+    build: "Cucumber Android Single",
+    name: "Cucumber Sample Test",
+    w3c: true,
+    platformName: platform_name,
+    isRealMobile: is_real_mobile,
+    deviceName: device_name,
+    platformVersion: platform_version,
+    app: app
+  }
 }
 
+user = ENV['LT_USER'] ? ENV['LT_USER'] : CONFIG['user']
+access = ENV['LT_ACCESS'] ? ENV['LT_ACCESS'] : CONFIG['key']
+server = ENV['LT_SERVER'] ? ENV['LT_SERVER'] : CONFIG['server']
 
-appium_driver = Appium::Driver.new({
-      'caps' => caps,
-      'appium_lib' => {
-          :server_url => "https://#{CONFIG['user']}:#{CONFIG['key']}@#{CONFIG['server']}/wd/hub"
-          #server_url: "https://webhook.site/5958677a-4db9-4253-bb76-5b98e97e4880"
-      }}, true)
-
-
+$appium_driver = Appium::Driver.new(
+  {
+    caps: caps,
+    appium_lib: {
+      server_url: "https://#{user}:#{access}@#{server}/wd/hub"
+    }
+  },
+  true
+)
 
 begin
-  #$appium_driver = Appium::Driver.new(desired_caps, true)
-  $driver = appium_driver.start_driver
-  #example.run
+  puts caps
+  $driver = $appium_driver.start_driver
 ensure
-  #$driver.quit
+  # $driver.driver_quit
 end
-
-

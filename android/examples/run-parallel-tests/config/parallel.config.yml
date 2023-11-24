@@ -14,7 +14,6 @@ browser_caps:
     "platformName": "android"
     "deviceName": "Galaxy S21 5G"
     "platformVersion": "11"
-    "automationName": "UiAutomation2"
     "app": "lt://proverbial-android"      # Add your app url here
   -
     "isRealMobile": "true"
