@@ -195,7 +195,7 @@ browser_caps:
 
 ## Executing The Tests
 
-- Switch to `run_first_test` directory under [Android examples](android/examples) or [iOS examples](ios/examples)
+- Switch to `run-first-test` directory under [Android examples](android/examples) or [iOS examples](ios/examples)
 
 - Go to `config/first.config.yml` and edit the username, acessKey and add your app url.
 
@@ -208,7 +208,7 @@ bundle exec rake first
 
 ### **Speed up test execution with parallel testing :**
 
-- Switch to `run_parallel_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
+- Switch to `run-parallel-test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
 
 
 ### **Use Local testing for apps that access resources hosted in development or testing environments :**
