@@ -1,76 +1,45 @@
 require 'yaml'
 require 'rspec'
 require 'selenium-cucumber'
-
 require 'appium_lib'
 
 TASK_ID = (ENV['TASK_ID'] || 0).to_i
-CONFIG_NAME = ENV['CONFIG_NAME'] || 'first'
+CONFIG_NAME = ENV['CONFIG_NAME'] || 'parallel'
 
 CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "../../config/#{CONFIG_NAME}.config.yml")))
 
-@caps = CONFIG['common_caps'].merge(CONFIG['browser_caps'][TASK_ID])
+username = ENV["LT_USERNAME"] || "YOUR_LT_USERNAME"
+accessToken = ENV["LT_ACCESS_KEY"] || "YOUR_LT_ACCESS_KEY"
 
-
-#$bs_local = nil
-
-
-puts @caps.inspect
-
-us= @caps["user"].inspect
-ak= @caps["key"].inspect
-is= @caps["isRealMobile"].inspect
-pl= @caps["platform"].inspect
-dn= @caps["deviceName"].inspect 
-pv= @caps["platformVersion"].inspect
-ap= @caps["app"].inspect
-
-
-
-user= us.gsub("\"", "")
-accessKey=ak.gsub("\"", "")
-isRealMobile= is.gsub("\"", "")
-platform= pl.gsub("\"", "")
-deviceName= dn.gsub("\"", "")
-platformVersion= pv.gsub("\"", "")
-app= ap.gsub("\"", "")
-puts isRealMobile 
-
-
-caps={ 
-  
-  "LT:Options" => {
-
-    "build" => "Cucumber Parallel iOS",
-    "name" => "Cucumber Sample Test",
-    "platformName" => platform,
-    "isRealMobile" => isRealMobile,
-    "deviceName" => deviceName,
-    "platformVersion" => platformVersion,
-    "app" => app,
-    "w3c" => true
-
-},
-
- 
+caps = {     
+    "lt:options" => {      
+        :deviceName => "iPhone 14",
+        :platformName => "iOS",
+        :platformVersion => "16",
+        :build => "Ruby Cucumber - iOS Parallel",
+        :name => "Ruby iOS Parallel Test #{TASK_ID}",
+        :isRealMobile => true,
+        :queueTimeout => 300,
+        :app => "YOUR_IOS_APP_ID",
+        :w3c => true,
+        :autoGrantPermissions => true
+    },
+    :platformName => "iOS"
 }
 
-
 appium_driver = Appium::Driver.new({
-      'caps' => caps,
-      'appium_lib' => {
-          :server_url => "https://#{CONFIG['user']}:#{CONFIG['key']}@#{CONFIG['server']}/wd/hub"
-          
-      }}, true)
-
-
+    'caps' => caps,
+    'appium_lib' => {
+        :server_url => "https://#{username}:#{accessToken}@mobile-hub.lambdatest.com/wd/hub"
+    }
+}, true)
 
 begin
-  #$appium_driver = Appium::Driver.new(desired_caps, true)
   $driver = appium_driver.start_driver
-  #example.run
-ensure
-  #$driver.quit
+rescue => e
+  puts "Error starting driver: #{e.message}"
+  puts "Capabilities used: #{caps.inspect}"
+  raise e
 end
 
 

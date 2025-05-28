@@ -1,4 +1,4 @@
-Feature: App automation in android
+Feature: App automation in IOS
 
 
 Scenario: Search for a term
