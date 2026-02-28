@@ -142,6 +142,8 @@ You can update your custom capabilities in test scripts. In this sample project,
 
 <TabItem value="android-config" label="Android" default>
 
+**Android**
+
 ```ruby title="Android first.config.yml)"
 server: "mobile-hub.lambdatest.com"
 user: "LT_USERNAME"    # Add Lambdatest username here
@@ -160,10 +162,37 @@ browser_caps:
     "deviceName": "Galaxy S21 5G"
     "platformVersion": "11"
     "app": "APP_URL"      # Add your app url here
+
+```
+**W3C Capabilities (Ruby 3.4 Fix)**
+
+You must update your env.rb file (located in features/support/) using Symbols for keys.
+
+Android Example:
+
+```bash
+caps = {
+  "platformName" => full_caps["platform"] || "Android",
+  "appium:deviceName" => full_caps["deviceName"] || "Galaxy S21 5G",
+  "appium:platformVersion" => full_caps["platformVersion"] || "11",
+  "appium:app" => "lt://proverbial-android", # Ensure this matches your LT app ID
+  "appium:isRealMobile" => true,
+  "appium:automationName" => "UiAutomator2",
+  "lt:options" => {
+    "user" => username,
+    "accessKey" => accessToken,
+    "build" => "Ruby-Cucumber-Android",
+    "name" => "Sample Test",
+    "w3c" => true,
+    "isRealMobile" => true
+  }
+}
 ```
 
 </TabItem>
 <TabItem value="ios-config" label="iOS" default>
+
+**Ios**
 
 ```ruby title="iOS first.config.yml"
 server: "mobile-hub.lambdatest.com"
@@ -182,8 +211,31 @@ browser_caps:
     "deviceName": "iPad (2017)"
     "platformVersion": "13"
     "app": "APP_URL"      # Add your app url here
-```
 
+```
+**W3C Capabilities (Ruby 3.4 Fix)**
+
+You must update your env.rb file (located in features/support/) using Symbols for keys.
+
+ios Example:
+```bash
+caps = {
+  "platformName" => full_caps["platform"] || "ios",
+  "appium:deviceName" => full_caps["deviceName"] || "iPhone 15",
+  "appium:platformVersion" => full_caps["platformVersion"] || "17",
+  "appium:app" => "lt://proverbial-ios", # Ensure this matches your LT app ID
+  "appium:isRealMobile" => true,
+  "appium:automationName" => "XCUITest",
+  "lt:options" => {
+    "user" => username,
+    "accessKey" => accessToken,
+    "build" => "Ruby-Cucumber-ios",
+    "name" => "Sample Test",
+    "w3c" => true,
+    "isRealMobile" => true
+  }
+}
+```
 </TabItem>
 
 </Tabs>
@@ -205,6 +257,7 @@ browser_caps:
 bundle install
 bundle exec rake first
 ```
+Alternative command: If rake is not configured, you can run "bundle exec cucumber" directly in these folders.
 
 ### **Speed up test execution with parallel testing :**
 
@@ -216,6 +269,19 @@ bundle exec rake first
 - Switch to `run_local_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
 
 **Info:** Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the :link: [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
+
+## Troubleshooting
+
+1. Error: Connection refused - connect(2) for "127.0.0.1"
+Cause: Ruby is trying to find a local Appium server because it doesn't recognize your LambdaTest URL.
+Fix: In your env.rb file, ensure the driver initialization uses symbols:
+
+```bash
+@appium_driver = Appium::Driver.new({
+  :caps => caps,
+  :appium_lib => { :server_url => server_url }
+}, true)
+```
 
 ## Additional Links
 
