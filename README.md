@@ -1,269 +1,112 @@
-# Cucumber With Appium — TestMu AI (Formerly LambdaTest)
+# Run Appium Tests with Ruby and Cucumber on TestMu AI (Formerly LambdaTest)
 
 <p align="center">
-<img height="500" src="https://user-images.githubusercontent.com/95698164/171858095-57a02573-3b2e-4dfb-92ee-5c62f1aade4d.png">
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://rubygems.org/gems/cucumber"><img src="https://img.shields.io/gem/v/cucumber.svg?style=for-the-badge&labelColor=000000" alt="Cucumber version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
 </p>
 
-<p align="center">
-  <a href="https://www.testmuai.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Blog</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.testmuai.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Docs</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.testmuai.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Learning Hub</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.testmuai.com/newsletter/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Newsletter</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.testmuai.com/certifications/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber" target="_bank">Certifications</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.youtube.com/@TestMuAI" target="_bank">YouTube</a>
-</p>
-&emsp;
-&emsp;
-&emsp;
+## Getting Started
 
-*Cucumber is a free and open source behavior-driven development (BDD) tool that supports the development process. Its ordinary language parser, Gherkin, allows software behavior to be specified in a logical language that anyone can understand. Perform Appium automation tests on [TestMu AI's online cloud](https://www.testmuai.com/appium-mobile-testing).*
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks. 
 
-*Learn the basics of [Appium testing on the TestMu AI platform.](https://www.testmuai.com/support/docs/getting-started-with-appium-testing/)*
+With TestMu AI (Formerly LambdaTest), you can run Appium tests in Ruby using Cucumber BDD across real mobile devices. This sample shows how to configure Ruby Cucumber Appium tests to run on the TestMu AI Real Device Cloud.
 
-[<img height="53" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/) for the full setup walkthrough.
 
-## Table of Contents
+### Prerequisites
 
-* [Pre-requisites](#pre-requisites)
-* [Run Your First Test](#run-your-first-test)
-* [Executing The Tests](#executing-the-tests)
+- Ruby (latest stable)
+- Bundler
+- A TestMu AI (Formerly LambdaTest) account with your username and access key
 
-## Pre-requisites
+### Setup
 
-Before you can start performing Ruby automation testing with Selenium, you would need to:
-
-- Install **Ruby** and **gem** on your local system. Follow these instructions to install on different operating systems.
-
-  - For **Windows**, you can download from the [official website](https://rubyinstaller.org/downloads/).
-  - For **Linux** or **Ubuntu**, you can run a simple apt command like below:
-
-    ```bash
-    sudo apt-get install ruby-full
-    ```
-
-  - For **macOS**, you can run a [Homebrew](https://brew.sh/) command like this:
-
-    ```bash
-    brew install ruby
-    ```
-
-- Ensure you have Dependency manager **bundler** installed. If not installed, you can install with the following command -
-
-  ```
-  gem install bundler
-  ```
-
-### Clone The Sample Project
-
-Clone the TestMu AI’s [LT_Ruby_Appium](https://github.com/LambdaTest/LT-appium-ruby-cucumber) and navigate to the code directory as shown below:
+Clone and install dependencies:
 
 ```bash
-git clone https://github.com/LambdaTest/LT-appium-ruby-cucumber
-cd LT-appium-ruby-cucumber
-```
-
-### Setting Up Your Authentication
-
-Make sure you have your TestMu AI credentials with you to run test automation scripts on LambdaTest. To obtain your access credentials, [purchase a plan](https://billing.lambdatest.com/billing/plans) or access the [Automation Dashboard](https://appautomation.lambdatest.com/).
-
-Set TestMu AI `Username` and `Access Key` in environment variables.
-
-**For Linux/macOS:**
-
-```js
-export LT_USERNAME=YOUR_LAMBDATEST_USERNAME \
-export LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
-```
-  
-**For Windows:**
-
-```js
-set LT_USERNAME=YOUR_LAMBDATEST_USERNAME `
-set LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
-```
-  
-### Upload Your Application
-
-Upload your **_iOS_** application (.ipa file) or **_android_** application (.apk file) to the TestMu AI servers using our **REST API**. You need to provide your **Username** and **AccessKey** in the format `Username:AccessKey` in the **cURL** command for authentication. Make sure to add the path of the **appFile** in the cURL request. Here is an example cURL request to upload your app using our REST API:
-
-**Using App File:**
-
-**For Linux/macOS:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
---location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
---form 'name="Android_App"' \
---form 'appFile=@"/Users/macuser/Downloads/proverbial_android.apk"' 
-```
-
-**For Windows;**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -F "appFile=@"/Users/macuser/Downloads/proverbial_android.apk""
-```
-
-**Using App URL:**
-
-**For Linux/macOS:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
---location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
---form 'name="Android_App"' \
---form 'url="https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk"'
-```
-
-**For Windows:**
-
-```js
-curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -d "{"url":"https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk","name":"sample.apk"}"
-```
-
-**Tip:**
-
-- If you do not have any **.apk** or **.ipa** file, you can run your sample tests on TestMu AI by using our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
-- Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
-
-## Run Your First Test
-
-**Test Scenario:** Check out [first_steps.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/Android/examples/First_test/features/step_definitions/first_steps.rb) file to view the sample test script in android/ios folder and [first.config.yml](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/iOS/examples/First_test/features/step_definitions/first_steps.rb) to make changes to the username, accessKey and app url.
-
-### Configuring Your Test Capabilities
-
-You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
-
-<Tabs className="docs__val">
-
-<TabItem value="android-config" label="Android" default>
-
-```ruby title="Android first.config.yml)"
-server: "mobile-hub.lambdatest.com"
-user: "LT_USERNAME"    # Add Lambdatest username here
-key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
-
-
-common_caps:
-
-  "build": "br-1"
-  
-
-browser_caps:
-  -
-    "isRealMobile": "true"
-    "platform": "android"
-    "deviceName": "Galaxy S21 5G"
-    "platformVersion": "11"
-    "app": "APP_URL"      # Add your app url here
-```
-
-</TabItem>
-<TabItem value="ios-config" label="iOS" default>
-
-```ruby title="iOS first.config.yml"
-server: "mobile-hub.lambdatest.com"
-user: "LT_USERNAME"    # Add Lambdatest username here
-key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
-
-common_caps:
-
-  "build": "br-2"
-  
-
-browser_caps:
-  -
-    "isRealMobile": "true"
-    "platform": "ios"
-    "deviceName": "iPad (2017)"
-    "platformVersion": "13"
-    "app": "APP_URL"      # Add your app url here
-```
-
-</TabItem>
-
-</Tabs>
-
-**Info Note:**
-
-- You must add the generated **APP_URL** to the `"app"` capability in the config file.
-- You can generate capabilities for your test requirements with the help of our inbuilt **[Capabilities Generator tool](https://www.testmuai.com/capabilities-generator/beta/index.html)**. A more Detailed Capability Guide is available [here](https://www.testmuai.com/support/docs/desired-capabilities-in-appium/).
-
-## Executing The Tests
-
-- Switch to `run_first_test` directory under [Android examples](android/examples) or [iOS examples](ios/examples)
-
-- Go to `config/first.config.yml` and edit the username, acessKey and add your app url.
-
-- Run the following commands to run your tests
-
-```bash
+git clone https://github.com/LambdaTest/LT-appium-ruby-cucumber && cd LT-appium-ruby-cucumber
 bundle install
+```
+
+Set your credentials as environment variables.
+
+**macOS / Linux:**
+
+```bash
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+**Windows:**
+
+```bash
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
+
+### Run tests
+
+```bash
 bundle exec rake first
 ```
 
-### **Speed up test execution with parallel testing :**
+View results on your TestMu AI dashboard.
 
-- Switch to `run_parallel_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
+### Local testing with TestMu AI Tunnel
 
+To test locally hosted apps, set up the TestMu AI tunnel. OS-specific guides:
 
-### **Use Local testing for apps that access resources hosted in development or testing environments :**
+- [Local Testing on Windows](https://www.testmuai.com/support/docs/local-testing-for-windows/)
+- [Local Testing on macOS](https://www.testmuai.com/support/docs/local-testing-for-macos/)
+- [Local Testing on Linux](https://www.testmuai.com/support/docs/local-testing-for-linux/)
 
-- Switch to `run_local_test` directory under [Android examples](android/examples/) or [iOS examples](ios/examples/)
+Add the following to your capabilities:
 
-**Info:** Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the :link: [TestMu AI App Automation Dashboard](https://appautomation.lambdatest.com/build).
+```js
+tunnel: true,
+```
 
-## Additional Links
+## Contributions
 
-- [Advanced Configuration for Capabilities](https://www.testmuai.com/support/docs/desired-capabilities-in-appium/)
-- [How to test locally hosted apps](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/)
-- [How to integrate TestMu AI with CI/CD](https://www.testmuai.com/support/docs/integrations-with-ci-cd-tools/)
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your Ruby version, OS, and Cucumber version.
 
-## Documentation & Resources :books:
-      
-Visit the following links to learn more about TestMu AI's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
+## TestMu AI (Formerly LambdaTest) Community
 
-* [TestMu AI Documentation](https://www.testmuai.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)
-* [TestMu AI Blog](https://www.testmuai.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)
-* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-ruby-cucumber)    
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
+  
+## TestMu AI (Formerly LambdaTest) Certifications
 
-## TestMu AI Community :busts_in_silhouette:
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
 
-The [TestMu AI Community](https://community.testmuai.com/) allows people to interact with tech enthusiasts. Connect, ask questions, and learn from tech-savvy people. Discuss best practises in web development, testing, and DevOps with professionals from across the globe 🌎
+## Learning Resources by TestMu AI (Formerly LambdaTest)
 
-## What's New At TestMu AI ❓
+Learn modern testing through tutorials, guides, videos, and weekly updates:
 
-To stay updated with the latest features and product add-ons, visit [Changelog](https://changelog.lambdatest.com/)
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
+  
+## LambdaTest is Now TestMu AI
 
-## 🚀 LambdaTest is Now TestMu AI
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
 
-👋 Welcome to TestMu AI, the next evolution of LambdaTest. As of January 2026, [LambdaTest is Now TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/) - we have evolved from a cross-browser testing cloud into a unified, AI-native quality engineering platform designed for the modern DevOps era.
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
 
-Whether you have been part of the LambdaTest community for years or are just discovering TestMu AI, our mission remains the same: to help you ship faster with high-scale test execution, autonomous testing, and deep quality analytics.
+👉 Find the new home for [LambdaTest](https://www.testmuai.com).
 
-### 🔄 Our Rebrand Journey
+### How LambdaTest Evolved into TestMu AI
 
-In 2017, we introduced LambdaTest with a clear mission: to become the world's most trusted cloud testing platform. We built a scalable, high-performance test cloud that eliminated flakiness, improved developer feedback cycles, and accelerated release velocity for teams worldwide.
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
 
-As LambdaTest grew, we expanded the platform into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the entire testing lifecycle. These capabilities enabled teams to test any stack, on any technology, at enterprise scale.
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
 
-Over time, we rebuilt the architecture to be AI-native from the ground up. What began as LambdaTest's high-performance testing cloud has now evolved into TestMu AI, an AI-native, multi-agent platform redefining modern quality engineering.
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm. 
 
-We chose the name TestMu AI to reflect our shift towards intelligent, autonomous testing. While our identity has changed, our core technology and commitment to the testing community stay the same.
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
 
-👉 Find [LambdaTest's New Home](https://www.testmuai.com/).
+## Support
 
-### 🔭 Explore TestMu AI
-
-The same infrastructure LambdaTest customers relied on, now delivered through autonomous AI agents.
-
-- [KaneAI](https://www.testmuai.com/kane-ai/)
-- [Agent-to-Agent Testing](https://www.testmuai.com/agent-to-agent-testing/)
-- [HyperExecute](https://www.testmuai.com/hyperexecute/)
-- [Real Device Cloud](https://www.testmuai.com/real-device-cloud/)
-- [Pricing](https://www.testmuai.com/pricing/)
-- [Documentation](https://www.testmuai.com/support/docs/)
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
