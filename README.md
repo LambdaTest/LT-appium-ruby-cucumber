@@ -44,13 +44,201 @@ export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 ```bash
 set LT_USERNAME="YOUR_USERNAME"
 set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+git clone https://github.com/LambdaTest/LT-appium-ruby-cucumber
+cd LT-appium-ruby-cucumber
+```
+
+### Setting Up Your Authentication
+
+Make sure you have your LambdaTest credentials with you to run test automation scripts on LambdaTest. To obtain your access credentials, [purchase a plan](https://billing.lambdatest.com/billing/plans) or access the [Automation Dashboard](https://appautomation.lambdatest.com/).
+
+Set LambdaTest `Username` and `Access Key` in environment variables.
+
+**For Linux/macOS:**
+
+```js
+export LT_USERNAME=YOUR_LAMBDATEST_USERNAME \
+export LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
+```
+  
+**For Windows:**
+
+```js
+set LT_USERNAME=YOUR_LAMBDATEST_USERNAME `
+set LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
+```
+  
+### Upload Your Application
+
+Upload your **_iOS_** application (.ipa file) or **_android_** application (.apk file) to the LambdaTest servers using our **REST API**. You need to provide your **Username** and **AccessKey** in the format `Username:AccessKey` in the **cURL** command for authentication. Make sure to add the path of the **appFile** in the cURL request. Here is an example cURL request to upload your app using our REST API:
+
+**Using App File:**
+
+**For Linux/macOS:**
+
+```js
+curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
+--location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
+--form 'name="Android_App"' \
+--form 'appFile=@"/Users/macuser/Downloads/proverbial_android.apk"' 
+```
+
+**For Windows;**
+
+```js
+curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -F "appFile=@"/Users/macuser/Downloads/proverbial_android.apk""
+```
+
+**Using App URL:**
+
+**For Linux/macOS:**
+
+```js
+curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" \
+--location --request POST 'https://manual-api.lambdatest.com/app/upload/realDevice' \
+--form 'name="Android_App"' \
+--form 'url="https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk"'
+```
+
+**For Windows:**
+
+```js
+curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -d "{"url":"https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk","name":"sample.apk"}"
+```
+
+**Tip:**
+
+- If you do not have any **.apk** or **.ipa** file, you can run your sample tests on LambdaTest by using our sample :link: [Android app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_android.apk) or sample :link: [iOS app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/proverbial_ios.ipa).
+- Response of above cURL will be a **JSON** object containing the `App URL` of the format - <lt://APP123456789123456789> and will be used in the next step.
+
+## Run Your First Test
+
+**Test Scenario:** Check out [first_steps.rb](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/Android/examples/First_test/features/step_definitions/first_steps.rb) file to view the sample test script in android/ios folder and [first.config.yml](https://github.com/LambdaTest/LT-appium-ruby-cucumber/blob/master/iOS/examples/First_test/features/step_definitions/first_steps.rb) to make changes to the username, accessKey and app url.
+
+### Configuring Your Test Capabilities
+
+You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
+
+<Tabs className="docs__val">
+
+<TabItem value="android-config" label="Android" default>
+
+**Android**
+
+```ruby title="Android first.config.yml)"
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
+
+
+common_caps:
+
+  "build": "br-1"
+  
+
+browser_caps:
+  -
+    "isRealMobile": "true"
+    "platform": "android"
+    "deviceName": "Galaxy S21 5G"
+    "platformVersion": "11"
+    "app": "APP_URL"      # Add your app url here
+
+```
+**W3C Capabilities (Ruby 3.4 Fix)**
+
+You must update your env.rb file (located in features/support/) using Symbols for keys.
+
+Android Example:
+
+```bash
+caps = {
+  "platformName" => full_caps["platform"] || "Android",
+  "appium:deviceName" => full_caps["deviceName"] || "Galaxy S21 5G",
+  "appium:platformVersion" => full_caps["platformVersion"] || "11",
+  "appium:app" => "lt://proverbial-android", # Ensure this matches your LT app ID
+  "appium:isRealMobile" => true,
+  "appium:automationName" => "UiAutomator2",
+  "lt:options" => {
+    "user" => username,
+    "accessKey" => accessToken,
+    "build" => "Ruby-Cucumber-Android",
+    "name" => "Sample Test",
+    "w3c" => true,
+    "isRealMobile" => true
+  }
+}
 ```
 
 ### Run tests
+</TabItem>
+<TabItem value="ios-config" label="iOS" default>
+
+**Ios**
+
+```ruby title="iOS first.config.yml"
+server: "mobile-hub.lambdatest.com"
+user: "LT_USERNAME"    # Add Lambdatest username here
+key: "LT_ACCESS_KEY"   # Add Lambdtest accessKey here
+
+common_caps:
+
+  "build": "br-2"
+  
+
+browser_caps:
+  -
+    "isRealMobile": "true"
+    "platform": "ios"
+    "deviceName": "iPad (2017)"
+    "platformVersion": "13"
+    "app": "APP_URL"      # Add your app url here
+
+```
+**W3C Capabilities (Ruby 3.4 Fix)**
+
+You must update your env.rb file (located in features/support/) using Symbols for keys.
+
+ios Example:
+```bash
+caps = {
+  "platformName" => full_caps["platform"] || "ios",
+  "appium:deviceName" => full_caps["deviceName"] || "iPhone 15",
+  "appium:platformVersion" => full_caps["platformVersion"] || "17",
+  "appium:app" => "lt://proverbial-ios", # Ensure this matches your LT app ID
+  "appium:isRealMobile" => true,
+  "appium:automationName" => "XCUITest",
+  "lt:options" => {
+    "user" => username,
+    "accessKey" => accessToken,
+    "build" => "Ruby-Cucumber-ios",
+    "name" => "Sample Test",
+    "w3c" => true,
+    "isRealMobile" => true
+  }
+}
+```
+</TabItem>
+
+</Tabs>
+
+**Info Note:**
+
+- You must add the generated **APP_URL** to the `"app"` capability in the config file.
+- You can generate capabilities for your test requirements with the help of our inbuilt **[Capabilities Generator tool](https://www.lambdatest.com/capabilities-generator/beta/index.html)**. A more Detailed Capability Guide is available [here](https://www.lambdatest.com/support/docs/desired-capabilities-in-appium/).
+
+## Executing The Tests
+
+- Switch to `run_first_test` directory under [Android examples](android/examples) or [iOS examples](ios/examples)
+
+- Go to `config/first.config.yml` and edit the username, acessKey and add your app url.
+
+- Run the following commands to run your tests
 
 ```bash
 bundle exec rake first
 ```
+Alternative command: If rake is not configured, you can run "bundle exec cucumber" directly in these folders.
 
 View results on your TestMu AI dashboard.
 
@@ -77,6 +265,24 @@ Contributions are welcome. Open an issue to discuss your idea before submitting 
 Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
   
 ## TestMu AI (Formerly LambdaTest) Certifications
+## Troubleshooting
+
+1. Error: Connection refused - connect(2) for "127.0.0.1"
+Cause: Ruby is trying to find a local Appium server because it doesn't recognize your LambdaTest URL.
+Fix: In your env.rb file, ensure the driver initialization uses symbols:
+
+```bash
+@appium_driver = Appium::Driver.new({
+  :caps => caps,
+  :appium_lib => { :server_url => server_url }
+}, true)
+```
+
+## Additional Links
+
+- [Advanced Configuration for Capabilities](https://www.lambdatest.com/support/docs/desired-capabilities-in-appium/)
+- [How to test locally hosted apps](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/)
+- [How to integrate LambdaTest with CI/CD](https://www.lambdatest.com/support/docs/integrations-with-ci-cd-tools/)
 
 Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
 

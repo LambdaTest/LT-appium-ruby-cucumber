@@ -11,6 +11,6 @@ browser_caps:
   -
     "isRealMobile": "true"
     "platform": "iOS"
-    "deviceName": "iPhone 11"
-    "platformVersion": "14"
+    "deviceName": "iPhone 15"
+    "platformVersion": "17"
     "app": "lt://proverbial-ios"      # Add your app url here

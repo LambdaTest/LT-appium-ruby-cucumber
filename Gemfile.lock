@@ -1,0 +1,147 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    appium_lib (16.1.1)
+      appium_lib_core (>= 9.2.1, < 12.0)
+      nokogiri (~> 1.8, >= 1.8.1)
+      tomlrb (>= 1.1, < 3.0)
+    appium_lib_core (11.2.0)
+      faye-websocket (>= 0.11, < 0.13)
+      selenium-webdriver (~> 4.21)
+    base64 (0.3.0)
+    bigdecimal (4.0.1)
+    builder (3.3.0)
+    chunky_png (1.4.0)
+    cucumber (10.2.0)
+      base64 (~> 0.2)
+      builder (~> 3.2)
+      cucumber-ci-environment (> 9, < 12)
+      cucumber-core (> 15, < 17)
+      cucumber-cucumber-expressions (> 17, < 20)
+      cucumber-html-formatter (> 21, < 23)
+      diff-lcs (~> 1.5)
+      logger (~> 1.6)
+      mini_mime (~> 1.1)
+      multi_test (~> 1.1)
+      sys-uname (~> 1.3)
+    cucumber-ci-environment (11.0.0)
+    cucumber-core (16.1.1)
+      cucumber-gherkin (> 36, < 40)
+      cucumber-messages (> 31, < 33)
+      cucumber-tag-expressions (> 6, < 9)
+    cucumber-cucumber-expressions (19.0.0)
+      bigdecimal
+    cucumber-gherkin (38.0.0)
+      cucumber-messages (>= 31, < 33)
+    cucumber-html-formatter (22.3.0)
+      cucumber-messages (> 23, < 33)
+    cucumber-messages (32.0.1)
+    cucumber-tag-expressions (8.1.0)
+    diff-lcs (1.6.2)
+    eventmachine (1.2.7)
+    faye-websocket (0.12.0)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.8.0)
+    ffi (1.17.3-x64-mingw-ucrt)
+    logger (1.7.0)
+    memoist3 (1.0.0)
+    mini_mime (1.1.5)
+    multi_test (1.1.0)
+    nokogiri (1.19.0-x64-mingw-ucrt)
+      racc (~> 1.4)
+    power_assert (3.0.1)
+    racc (1.8.1)
+    rexml (3.4.4)
+    rspec (3.13.2)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.6)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.7)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.7)
+    rubyzip (3.2.2)
+    selenium-cucumber (3.1.5)
+      appium_lib (>= 8.0.2)
+      chunky_png (>= 1.3.5)
+      cucumber (>= 2.3.0)
+      rspec (>= 3.4.0)
+      selenium-webdriver (>= 2.53.0)
+    selenium-webdriver (4.40.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 4.0)
+      websocket (~> 1.0)
+    sys-uname (1.4.1)
+      ffi (~> 1.1)
+      memoist3 (~> 1.0.0)
+    test-unit (3.7.7)
+      power_assert
+    tomlrb (2.0.4)
+    websocket (1.2.11)
+    websocket-driver (0.8.0)
+      base64
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.5)
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  appium_lib (= 16.1.1)
+  cucumber (~> 10.2)
+  rspec (~> 3.13)
+  selenium-cucumber (~> 3.1)
+  selenium-webdriver (= 4.40.0)
+  test-unit (~> 3.7)
+
+CHECKSUMS
+  appium_lib (16.1.1) sha256=d53402b41846c1e1431ed44ba49cb7c9ff8f56f2a51c433b57f167b68afe9cb7
+  appium_lib_core (11.2.0) sha256=677040cceb7ff5e07276df55791106fee398101b69e82edf9e382a6609d18a70
+  base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
+  bigdecimal (4.0.1) sha256=8b07d3d065a9f921c80ceaea7c9d4ae596697295b584c296fe599dd0ad01c4a7
+  builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
+  chunky_png (1.4.0) sha256=89d5b31b55c0cf4da3cf89a2b4ebc3178d8abe8cbaf116a1dba95668502fdcfe
+  cucumber (10.2.0) sha256=fdedbd31ecf40858b60f04853f2aa15c44f5c30bbac29c6a227fa1e7005a8158
+  cucumber-ci-environment (11.0.0) sha256=0df79a9e1d0b015b3d9def680f989200d96fef206f4d19ccf86a338c4f71d1e2
+  cucumber-core (16.1.1) sha256=d3aaa80a1ee2865f63f1a21ef496129f675af9099993b9af9608c4ef8ae26b89
+  cucumber-cucumber-expressions (19.0.0) sha256=33208ff204732ac9bed42b46993a0a243054f71ece08579d57e53df6a1c9d93a
+  cucumber-gherkin (38.0.0) sha256=3e5846badf646eaec482b07067520e4494f370a0cfa5474d63522ca2ace800c4
+  cucumber-html-formatter (22.3.0) sha256=f9768ed05588dbd73a5f3824c2cc648bd86b00206e6972d743af8051281d0729
+  cucumber-messages (32.0.1) sha256=8889d29fa5486e6523bd537e95fbf86b99eb11258528d2d55af4b806594ffcff
+  cucumber-tag-expressions (8.1.0) sha256=9bd8c4b6654f8e5bf2a9c99329b6f32136a75e50cd39d4cfb3927d0fa9f52e21
+  diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
+  eventmachine (1.2.7) sha256=994016e42aa041477ba9cff45cbe50de2047f25dd418eba003e84f0d16560972
+  faye-websocket (0.12.0) sha256=ad9f7dfcd0306d0a13baeee450729657661129af15bb5f38716c242484ab42e1
+  ffi (1.17.3-x64-mingw-ucrt) sha256=5f1d7d067a9a1058ad183dba25b05557cd51c85fc1768c49338eabc1cf242d7c
+  logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  memoist3 (1.0.0) sha256=686e42402cf150a362050c23143dc57b0ef88f8c344943ff8b7845792b50d56f
+  mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
+  multi_test (1.1.0) sha256=e9e550cdd863fb72becfe344aefdcd4cbd26ebf307847f4a6c039a4082324d10
+  nokogiri (1.19.0-x64-mingw-ucrt) sha256=05d7ed2d95731edc9bef2811522dc396df3e476ef0d9c76793a9fca81cab056b
+  power_assert (3.0.1) sha256=8ce9876716cc74e863fcd4cdcdc52d792bd983598d1af3447083a3a9a4d34103
+  racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
+  rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
+  rspec (3.13.2) sha256=206284a08ad798e61f86d7ca3e376718d52c0bc944626b2349266f239f820587
+  rspec-core (3.13.6) sha256=a8823c6411667b60a8bca135364351dda34cd55e44ff94c4be4633b37d828b2d
+  rspec-expectations (3.13.5) sha256=33a4d3a1d95060aea4c94e9f237030a8f9eae5615e9bd85718fe3a09e4b58836
+  rspec-mocks (3.13.7) sha256=0979034e64b1d7a838aaaddf12bf065ea4dc40ef3d4c39f01f93ae2c66c62b1c
+  rspec-support (3.13.7) sha256=0640e5570872aafefd79867901deeeeb40b0c9875a36b983d85f54fb7381c47c
+  rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
+  selenium-cucumber (3.1.5) sha256=3e15ef2ef9507d73a3c20ce65f9001c614d1588ac6d7e2f865029335459465ad
+  selenium-webdriver (4.40.0) sha256=16ef7aa9853c1d4b9d52eac45aafa916e3934c5c83cb4facb03f250adfd15e5b
+  sys-uname (1.4.1) sha256=ed2278ec670ee8af5eb5420d3a98e22188051f6241180db7c779993db2739a16
+  test-unit (3.7.7) sha256=3c89d5ff0690a16bef9946156c4624390402b9d54dfcf4ce9cbd5b06bead1e45
+  tomlrb (2.0.4) sha256=262f77947ac3ac9b3366a0a5940ecd238300c553e2e14f22009e2afcd2181b99
+  websocket (1.2.11) sha256=b7e7a74e2410b5e85c25858b26b3322f29161e300935f70a0e0d3c35e0462737
+  websocket-driver (0.8.0) sha256=ed0dba4b943c22f17f9a734817e808bc84cdce6a7e22045f5315aa57676d4962
+  websocket-extensions (0.1.5) sha256=1c6ba63092cda343eb53fc657110c71c754c56484aad42578495227d717a8241
+
+BUNDLED WITH
+  4.0.5
